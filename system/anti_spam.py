@@ -1,4 +1,5 @@
 import os
+import asyncio
 
 import pytesseract
 import requests
@@ -10,6 +11,7 @@ from pyrogram.types import Message
 
 @Client.on_message(filters.photo)
 async def antispam(client, message):
+    userMention = message.from_user.mention
     userID = message.from_user.id
     chatID = message.chat.id
     fileID = str(message.photo.file_id)
@@ -36,9 +38,11 @@ async def antispam(client, message):
     finalWords = banWords.split()
     for x in finalWords:
         if x in toCheck:
-            banMsg = await message.reply("Spam detected!\nBanning user...")
+            banMsg = await message.reply("Spam detected!\nKicking user...")
             try:
                await client.ban_chat_member(chatID, userID)
-               await banMsg.edit(f"Banned {userID}!")
+               await client.unban_chat_member(chatID, userID
+               await asyncio.sleep(0.5)
+               await banMsg.edit(f"{userMention} Kicked!\nID: {userID}")
             except Exception as e:
-               await banMsg.edit(e)
+               pass
