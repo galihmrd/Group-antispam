@@ -6,6 +6,7 @@ WORKDIR /worker
 RUN apt update -qqy \
     && apt install --no-install-recommends git curl ffmpeg -qqy \
     && apt install tesseract-ocr -y \
+    && pip install nudenet --upgrade \
     && pip install -U -r requirements.txt \
     && rm -rf /var/lib/apt/lists/*
 
