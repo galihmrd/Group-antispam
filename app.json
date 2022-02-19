@@ -1,0 +1,29 @@
+{
+    "name": "Antispam bot",
+    "description": "Anti spammer telegram bot",
+    "keywords": ["bot", "telegram"],
+    "repository": "https://github.com/galihmrd/Group-antispam",
+    "stack": "container",
+    "env": {
+        "BOT_TOKEN": {
+            "description": "Your Bot token",
+            "required": true
+        },
+        "API_ID": {
+            "description": "Your Telegram API ID",
+            "required": true
+        },
+        "API_HASH": {
+            "description": "Your Telegram API HASH",
+            "required": true
+}
+    },
+    "buildpacks": [
+      {
+        "url": "https://github.com/samadii/heroku-buildpack-tesseract"
+      },
+      {
+        "url": "heroku/python"
+      }
+    ]
+}
