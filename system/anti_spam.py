@@ -57,6 +57,6 @@ async def antispam(client, message):
           await client.ban_chat_member(chat_id, userID)
           await banMsg.edit(f"Banned {userID}!")
        except Exception as e:
-          await banMsg.edit(f"Failed: {e})
+          await banMsg.edit(f"Failed: {e}")
     except Exception as e:
        await message.reply(e)
