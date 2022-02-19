@@ -3,7 +3,7 @@ from pyrogram import Client, idle
 from config import API_HASH, API_ID, BOT_TOKEN
 
 
-bot = Client(
+Bot = Client(
     ":memory:",
     api_hash=API_HASH,
     api_id=API_ID,
@@ -11,5 +11,6 @@ bot = Client(
     plugins=dict(root="system"),
 )
 
-bot.start()
+Bot.start()
+print("started!")
 idle()
