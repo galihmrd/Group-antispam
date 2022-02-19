@@ -36,23 +36,23 @@ async def antispam(client, message):
        try:
           toCheck.index("BTC")
        except ValueError:
-          pass
+          return
        try:
           toCheck.index("blockchain")
        except ValueError:
-          pass
+          return
        try:
           toCheck.index("ETH")
        except ValueError:
-          pass
+          return
        try:
           toCheck.index("Elon musk")
        except ValueError:
-          pass
+          return
        try:
           toCheck.index("bitcoin")
        except ValueError:
-          pass
+          return False
     except BaseException:
        pass
     banMsg = await message.reply("Spam detected!\nBanning user...")
