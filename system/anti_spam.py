@@ -32,8 +32,8 @@ async def antispam(client, message):
        await message.reply(e)
     try:
        toCheck = outputText[:-1]
-       spamCheck = "BTC"
+       spamCheck = ["BTC", "blockchain", "bitcoin", "ETH"]
        toCheck.index(spamCheck)
-       await message.reply("spam detected!")
     except ValueError:
-       await message.reply("this is not  spam")
+       await message.reply("Not spam")
+    await message.reply("Spam/Scam detected!!!")
