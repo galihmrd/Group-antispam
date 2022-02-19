@@ -11,6 +11,7 @@ from pyrogram.types import Message
 @Client.on_message(filters.photo)
 async def antispam(client, message):
     userID = message.from_user.id
+    chatID = message.chat.id
     fileID = str(message.photo.file_id)
     langCode = "eng"
     dbUrl = f"https://github.com/galihmrd/tessdata/raw/main/{langCode}.traineddata"
@@ -54,7 +55,7 @@ async def antispam(client, message):
           pass
        banMsg = await message.reply("Spam detected!\nBanning user...")
        try:
-          await client.ban_chat_member(chat_id, userID)
+          await client.ban_chat_member(chatID, userID)
           await banMsg.edit(f"Banned {userID}!")
        except Exception as e:
           await banMsg.edit(f"Failed: {e}")
