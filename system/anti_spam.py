@@ -44,5 +44,6 @@ async def antispam(client, message):
                await client.unban_chat_member(chatID, userID)
                await asyncio.sleep(0.5)
                await banMsg.edit(f"{userMention} Kicked!\nID: {userID}")
+               break
             except Exception as e:
                pass
