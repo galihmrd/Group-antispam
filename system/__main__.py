@@ -14,4 +14,3 @@ bot = Client(
 bot.start()
 print("started!")
 idle()
-bot.stop()
