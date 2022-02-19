@@ -52,6 +52,11 @@ async def antispam(client, message):
           toCheck.index("bitcoin")
        except ValueError:
           pass
-       await message.reply("Spam detected!\nBanned user!")
+       banMsg = await message.reply("Spam detected!\nBanning user...")
+       try:
+          await client.ban_chat_member(chat_id, userID)
+          await banMsg.edit(f"Banned {userID}!")
+       except Exception as e:
+          await banMsg.edit(f"Failed: {e})
     except Exception as e:
        await message.reply(e)
