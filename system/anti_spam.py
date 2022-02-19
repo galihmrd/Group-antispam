@@ -30,10 +30,9 @@ async def antispam(client, message):
        outputText = pytesseract.image_to_string(openImage, lang=f"{langCode}")
     except Exception as e:
        await message.reply(e)
-    try:
-       toCheck = outputText[:-1]
-       spamCheck = ["BTC", "blockchain", "bitcoin", "ETH"]
-       toCheck.index(spamCheck)
-    except ValueError:
-       await message.reply("Not spam")
-    await message.reply("Spam/Scam detected!!!")
+    toCheck = outputText[:-1]
+    blacklisted = ["BTC", "blockchain", "ETH", "bitcoin"]
+    if blacklisted in toCheck:
+        await message.reply("Spam/Scam detected!!!")
+    else:
+        await message.reply("Clear!!")
