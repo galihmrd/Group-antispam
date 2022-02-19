@@ -9,7 +9,7 @@ from pyrogram.errors import MessageEmpty
 from pyrogram.types import Message
 
 
-@Client.on_message(filters.photo)
+@Client.on_message(filters.photo & filters.group)
 async def antispam(client, message):
     userMention = message.from_user.mention
     userID = message.from_user.id
@@ -34,16 +34,17 @@ async def antispam(client, message):
     except Exception as e:
        await message.reply(e)
     toCheck = outputText[:-1]
-    banWords = "BTC ETH blockchain bitcoin cryptocurrency"
+    banWords = "BTC ETH blockchain bitcoin trader cryptocurrency"
     finalWords = banWords.split()
     for x in finalWords:
         if x in toCheck:
-            banMsg = await message.reply("Spam detected!\nKicking user...")
+            banMsg = await message.reply("**Spam detected!**\n`Kicking user...`")
             try:
+               await message.delete()
                await client.ban_chat_member(chatID, userID)
                await client.unban_chat_member(chatID, userID)
                await asyncio.sleep(0.5)
-               await banMsg.edit(f"{userMention} Kicked!\nID: {userID}")
+               await banMsg.edit(f"**{userMention} Kicked!**\nID: `{userID}`")
             except Exception as e:
-               pass
+               await banMsg.edit("Failed!")
             break
