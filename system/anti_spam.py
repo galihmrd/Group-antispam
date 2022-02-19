@@ -32,12 +32,13 @@ async def antispam(client, message):
     except Exception as e:
        await message.reply(e)
     toCheck = outputText[:-1]
-    if "BTC" or "blockchain" or "ETH" or "bitcoin" in toCheck:
-        banMsg = await message.reply("Spam detected!\nBanning user...")
-        try:
-           await client.ban_chat_member(chatID, userID)
-           await banMsg.edit(f"Banned {userID}!")
-        except Exception as e:
-           await banMsg.edit(f"Failed: {e}")
-    else:
-        return True
+    banWords = "BTC ETH blockchain bitcoin cryptocurrency"
+    finalWords = banWords.split()
+    for x in finalWords:
+        if x in toCheck:
+            banMsg = await message.reply("Spam detected!\nBanning user...")
+            try:
+               await client.ban_chat_member(chatID, userID)
+               await banMsg.edit(f"Banned {userID}!")
+            except Exception as e:
+               await banMsg.edit(e)
