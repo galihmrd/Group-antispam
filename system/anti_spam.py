@@ -48,6 +48,10 @@ async def antispam(client, message):
           toCheck.index("Elon musk")
        except ValueError:
           pass
+       try:
+          toCheck.index("bitcoin")
+       except ValueError:
+          pass
        await message.reply("Spam detected!\nBanned user!")
     except Exception as e:
        await message.reply(e)
