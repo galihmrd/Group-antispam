@@ -31,8 +31,19 @@ async def antispam(client, message):
     except Exception as e:
        await message.reply(e)
     toCheck = outputText[:-1]
-    blacklisted = ["BTC", "blockchain", "ETH", "bitcoin"]
-    if blacklisted in toCheck:
-        await message.reply("Spam/Scam detected!!!")
-    else:
-        await message.reply("Clear!!")
+    try:
+       try:
+          toCheck.index("BTC")
+       except ValueError:
+          pass
+       try:
+          toCheck.index("blockchain")
+       except ValueError:
+          pass
+       try:
+          toCheck.index("ETH")
+       except ValueError:
+          pass
+       await message.reply("Spam detected!\nBanned user!")
+    except Exception:
+       await message.reply(e)
