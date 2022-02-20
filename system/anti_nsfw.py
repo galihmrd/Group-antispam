@@ -4,8 +4,10 @@ from pyrogram.types import Message
 
 from nudenet import NudeDetector
 
-
-detector = NudeDetector()
+try:
+   detector = NudeDetector()
+except BaseException:
+   pass
 
 @Client.on_message(filters.photo)
 async def anti_nsfw(client, message):
