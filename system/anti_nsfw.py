@@ -6,7 +6,7 @@ from nudenet import NudeDetector
 
 
 @Client.on_message(filters.photo)
-async def anti_nsfw(client, filters):
+async def anti_nsfw(client, message):
     userMention = message.from_user.mention
     fileID = str(message.photo.file_id)
     detector = NudeDetector()
