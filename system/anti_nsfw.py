@@ -7,7 +7,7 @@ from nudenet import NudeDetector
 try:
    detector = NudeDetector()
 except BaseException:
-   pass
+   return
 
 @Client.on_message(filters.photo)
 async def anti_nsfw(client, message):
