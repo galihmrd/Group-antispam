@@ -19,7 +19,7 @@ async def anti_nsfw(client, filters):
        )
        await message.reply_photo(
             photo=f'./{message.chat.id}_out.jpg',
-            caption=f'**Sender:** {userMention}'}
+            caption=f'**Sender:** {userMention}',
        )
        os.remove(f'./{message.chat.id}_out.jpg')
        await message.delete()
