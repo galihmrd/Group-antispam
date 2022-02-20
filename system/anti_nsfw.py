@@ -5,11 +5,12 @@ from pyrogram.types import Message
 from nudenet import NudeDetector
 
 
+detector = NudeDetector()
+
 @Client.on_message(filters.photo)
 async def anti_nsfw(client, message):
     userMention = message.from_user.mention
     fileID = str(message.photo.file_id)
-    detector = NudeDetector()
     inputFile = await client.download_media(fileID)
     try:
        detector.censor(
